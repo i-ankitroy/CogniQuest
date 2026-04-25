@@ -20,7 +20,7 @@ export default function GamePage() {
   const [winData,   setWinData]   = useState(null);
   const [confetti,  setConfetti]  = useState(false);
 
-  const { isMuted, toggleMute, playSound } = useAudio();
+  const { isMuted, isMusicPlaying, toggleMute, toggleMusic, playSound } = useAudio();
   const { seconds, start: startTimer, stop: stopTimer, reset: resetTimer, format } = useTimer();
   const secondsRef = useRef(0);
   useEffect(() => { secondsRef.current = seconds; }, [seconds]);
@@ -192,6 +192,8 @@ export default function GamePage() {
         <RightSidebar
           isMuted={isMuted}
           onToggleMute={toggleMute}
+          isMusicPlaying={isMusicPlaying}
+          onToggleMusic={toggleMusic}
         />
       </div>
 
@@ -199,6 +201,7 @@ export default function GamePage() {
       <audio id="buzzer-sound" src="assets/audio/buzzer2.mp3" preload="auto" />
       <audio id="swipe-sound"  src="assets/audio/swipe.mp3"   preload="auto" />
       <audio id="win-sound"    src="assets/audio/win.mp3"     preload="auto" />
+      <audio id="ambient-music" src="assets/audio/ambient.mp3" loop preload="auto" />
     </div>
   );
 }

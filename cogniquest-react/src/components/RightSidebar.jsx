@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './RightSidebar.module.css';
 
-export default function RightSidebar({ isMuted, onToggleMute }) {
+export default function RightSidebar({ isMuted, onToggleMute, isMusicPlaying, onToggleMusic }) {
   return (
     <aside className={styles.sidebar}>
-      
+
       <div className={styles.infoSection}>
         <h3 className={styles.infoTitle}>How to Play</h3>
         <ul className={styles.infoList}>
@@ -35,10 +35,16 @@ export default function RightSidebar({ isMuted, onToggleMute }) {
       <div className={styles.bottomActions}>
         <div className={styles.idleNudge}>← Configure & click Start</div>
         <button
+          className={`${styles.actionBtn} ${isMusicPlaying ? styles.activeMusic : ''}`}
+          onClick={onToggleMusic}
+        >
+          {isMusicPlaying ? '🎵' : '📻'} &nbsp;{isMusicPlaying ? 'Music Playing' : 'Ambient Music'}
+        </button>
+        <button
           className={`${styles.actionBtn} ${isMuted ? styles.muted : ''}`}
           onClick={onToggleMute}
         >
-          {isMuted ? '🔇' : '🔊'} &nbsp;{isMuted ? 'Muted' : 'Sound On'}
+          {isMuted ? '🔇' : '🔊'} &nbsp;{isMuted ? 'SFX Off' : 'SFX On'}
         </button>
       </div>
     </aside>
