@@ -11,7 +11,7 @@
 }
 
 /* Grid size variants applied on .wrap */
-.wrap.sm { width: 100px; height: 135px; }
+.wrap.sm { width: 95px; height: 128px; }
 
 .card {
   width: 100%;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Card.module.css';
 
-export default function Card({ card, onClick }) {
+export default function Card({ card, onClick, numCards }) {
   const { isFlipped, isMatched, isWrong, image } = card;
 
   const cls = [
@@ -12,7 +12,7 @@ export default function Card({ card, onClick }) {
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={styles.wrap}>
+    <div className={`${styles.wrap} ${numCards === 12 ? styles.sm : ''}`}>
       <div className={cls} onClick={() => !isMatched && onClick(card.id)}>
         <div className={`${styles.face} ${styles.back}`}>
           <div className={styles.backPattern}></div>

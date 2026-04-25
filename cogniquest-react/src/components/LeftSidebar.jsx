@@ -17,6 +17,7 @@ export default function LeftSidebar({
   numCards, onNumCardsChange,
   revealTime, onRevealTimeChange,
   onUpload, uploadLabel,
+  onStart,
 }) {
   const fileInputRef = useRef(null);
 
@@ -76,6 +77,21 @@ export default function LeftSidebar({
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Start Game Button */}
+      <div className={styles.startWrapper}>
+        <button className={styles.startBtn} onClick={onStart}>
+          <span className={styles.startBtnGlow} />
+          <span className={styles.startBtnText}>
+            ▶ Start Game
+          </span>
+          <span className={styles.startBtnMeta}>
+            {numCards === 8 ? '2×4' : numCards === 10 ? '2×5' : '2×6'}
+             · 
+            {revealTime / 1000}s preview
+          </span>
+        </button>
       </div>
     </aside>
   );

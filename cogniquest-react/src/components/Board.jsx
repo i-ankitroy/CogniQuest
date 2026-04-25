@@ -16,6 +16,7 @@ export default function Board({ cards, numCards, onCardClick }) {
           key={card.id}
           card={card}
           onClick={onCardClick}
+          numCards={numCards}
         />
       ))}
     </div>
