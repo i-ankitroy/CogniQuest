@@ -1,0 +1,11 @@
+.board {
+  display: grid;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+.grid2x4 { grid-template-columns: repeat(4, auto); }
+.grid2x5 { grid-template-columns: repeat(5, auto); }
+.grid2x6 { grid-template-columns: repeat(6, auto); gap: 12px; }
+/* Shrink cards in 2x6 mode */
+.grid2x6 :global(.wrap) { width: 100px; height: 135px; }

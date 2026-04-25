@@ -1,41 +1,82 @@
 # CogniQuest ⚡🧠
 
-CogniQuest is a premium, highly-interactive Memory Card Game built with modern web technologies. Featuring a stunning "glassmorphism" UI, dynamic 3D card animations, live scoring, and customizable game modes, it's designed to provide an epic and challenging brain-training experience.
+A premium, highly-interactive **Memory Card Game** built with **React + Vite**. Featuring a dark glassmorphism UI, dynamic 3D card animations, live scoring, a confetti win celebration, and customizable game modes.
+
+---
+
+## 🚀 Getting Started
+
+```bash
+cd cogniquest-react
+npm install
+npm run dev
+```
+
+Then open **http://localhost:5173** in your browser.
+
+---
 
 ## ✨ Features
 
-* **Epic Gaming UI**: A dark, neon-infused glassmorphism design with floating 3D background cards, animated glowing orbs, and a responsive grid layout.
-* **Three Difficulty Levels**: 
-    * **2x4 Grid** (8 Cards) - Quick warmup
-    * **2x5 Grid** (10 Cards) - Medium challenge
-    * **2x6 Grid** (12 Cards) - Maximum brain stress
-* **Custom Image Upload**: Play with default images or upload your own pictures to personalize the game deck!
-* **Live Dashboard**: Real-time tracking of:
-    * ⏱️ Time Elapsed
-    * ❌ Errors / Mistakes made
-    * 🃏 Pairs Matched
-    * ⭐ Dynamic Score Calculation (based on time, pairs, and penalties)
-* **Preview Time**: Configurable 2s, 3s, or 4s peek before the cards flip face-down.
-* **Celebration Effects**: A highly responsive confetti canvas explosion upon winning, along with an epic win banner detailing your stats.
-* **Audio Controls**: Integrated sound effects for flipping, matching, buzzing (errors), and winning, complete with a global mute toggle.
+- **Epic Landing Page** — Floating 3D card backs, neon glowing orbs, animated entrance
+- **Three Difficulty Levels** — 2×4 (8 cards), 2×5 (10 cards), 2×6 (12 cards)
+- **Custom Image Upload** — Play with default images or upload your own
+- **Live Dashboard** (right sidebar):
+  - ⏱️ Real-time timer
+  - ❌ Error / mistake counter
+  - 🃏 Pairs matched tracker
+  - ⭐ Dynamic live score
+  - 📊 Progress bar
+- **Configurable Preview Time** — 2s / 3s / 4s peek before cards hide
+- **🎊 Confetti Win Celebration** — Canvas-based particle burst on game completion
+- **Win Stats Banner** — Time taken, errors, and final score displayed on win
+- **🔊 Audio Controls** — Sound effects (flip, match, error, win) with mute toggle
+- **Restart Button** — Instantly reshuffles and restarts the current difficulty
 
-## 🚀 How to Play
+---
 
-1. **Open** `mem start.html` in your favorite modern browser.
-2. Click **ENTER GAME** to reach the main dashboard.
-3. Select your **Grid Size** and **Preview Time** from the left sidebar.
-4. *(Optional)* Click **Upload Images** to use your own pictures for the memory cards.
-5. The cards will reveal themselves for the selected preview time, then flip face-down.
-6. Click cards to find matching pairs. Remember their positions!
-7. Match all pairs as quickly as possible with the fewest errors to achieve a high score.
+## 💡 Score Formula
 
-## 🛠️ Technologies Used
-* **HTML5**: Semantic layout and responsive DOM architecture.
-* **CSS3**: Advanced CSS Grid, Flexbox, 3D Transforms (`perspective`, `rotateY`), and Keyframe Animations.
-* **Vanilla JavaScript (ES6)**: State management, DOM manipulation, scoring logic, and custom Canvas-based confetti engine (No external libraries required).
+```
+Score = (Pairs × 150) - (Errors × 20) + Max(0, 300 - Time × 2)
+```
 
-## 💡 Scoring Logic
-The live scoring system is calculated dynamically:
-* `Base Score = Total Pairs × 150`
-* `Time Bonus = Max(0, 300 - (Seconds Elapsed × 2))`
-* `Penalty = Errors × 20`
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + Vite |
+| Routing | React Router v6 |
+| Styling | CSS Modules (scoped per component) |
+| State | React hooks + Refs (no external state library) |
+| Animations | CSS Keyframes + Web Animations API |
+| Physics | *Matter.js — planned* |
+| Generative FX | *P5.js — planned* |
+
+---
+
+## 📁 Project Structure
+
+```
+cogniquest-react/
+├── public/
+│   └── assets/
+│       ├── audio/          bell, buzzer, swipe, win sounds
+│       └── images/db_img/  default card image pool
+└── src/
+    ├── hooks/
+    │   ├── useGameLogic.js  core flip/match/score logic
+    │   ├── useTimer.js      interval timer
+    │   └── useAudio.js      mute + sound playback
+    ├── components/
+    │   ├── Card.jsx / .module.css
+    │   ├── Board.jsx / .module.css
+    │   ├── LeftSidebar.jsx / .module.css
+    │   ├── RightSidebar.jsx / .module.css
+    │   └── ConfettiCanvas.jsx
+    └── pages/
+        ├── LandingPage.jsx / .module.css
+        └── GamePage.jsx / .module.css
+```
