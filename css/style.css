@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Sleek, deep modern gradient background */
+    background: radial-gradient(circle at top left, #1a0b2e, #431c5d, #e05263);
+    background-attachment: fixed;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 1000px;
+    
+    /* Modern Glassmorphism */
+    background: rgba(25, 10, 40, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+    
+    border-radius: 30px;
+    padding: 50px 40px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+/* Headers */
+h1 {
+    color: #00f2fe;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 38px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    margin-bottom: 10px;
+}
+
+#instructions {
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+#errors {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ff4757;
+    background: rgba(255, 71, 87, 0.15);
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.2);
+}
+
+/* Upload Section & Time Dropdown */
+.upload-section, .timeBtn {
+    margin: 15px 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 25px;
+    border-radius: 20px;
+    border: 1px dashed rgba(255,255,255,0.2);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.upload-section label, .timeBtn label {
+    font-size: 18px;
+    margin-right: 15px;
+    color: #00f2fe;
+    font-weight: 600;
+}
+
+.upload-section input[type="file"] {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+}
+
+.upload-section input[type="file"]::file-selector-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.upload-section input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4);
+}
+
+.timeBtn select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(25, 10, 40, 0.8);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Difficulty Buttons */
+.difficultyBtn {
+    display: flex;
+    gap: 25px;
+    margin: 25px 0;
+}
+
+#easyBtn, #mediumBtn, #hardBtn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    width: 110px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#easyBtn:hover, #mediumBtn:hover, #hardBtn:hover {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+#easyBtn:active, #mediumBtn:active, #hardBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 242, 254, 0.4);
+}
+
+/* Board */
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
+    min-height: 360px;
+    width: 100%;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: inset 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-container {
+    width: 110px;
+    height: 155px;
+    perspective: 1000px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.card:hover {
+    box-shadow: 0 15px 30px rgba(0, 242, 254, 0.3);
+    transform: translateY(-5px);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.card .back {
+    transform: rotateY(180deg);
+}
+
+/* Game End */
+#game-end {
+    margin-top: 30px;
+}
+
+#game-end p {
+    font-size: 28px;
+    color: #00f2fe;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+#game-end button {
+    padding: 12px 35px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+    transition: all 0.3s ease;
+}
+
+#game-end button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6);
+}
