@@ -7,6 +7,7 @@ import ConfettiCanvas from '../components/ConfettiCanvas';
 import { useGameLogic } from '../hooks/useGameLogic';
 import { useTimer }     from '../hooks/useTimer';
 import { useAudio }     from '../hooks/useAudio';
+import DynamicBackground from '../components/DynamicBackground';
 import styles           from './GamePage.module.css';
 
 export default function GamePage() {
@@ -107,10 +108,7 @@ export default function GamePage() {
 
   return (
     <div className={`${styles.app} ${!isIdle ? styles.gameMode : ''}`}>
-      {/* Background orbs */}
-      <div className={`${styles.orb} ${styles.orb1}`} />
-      <div className={`${styles.orb} ${styles.orb2}`} />
-      <div className={`${styles.orb} ${styles.orb3}`} />
+      <DynamicBackground />
 
       <ConfettiCanvas active={confetti} />
 
@@ -128,18 +126,18 @@ export default function GamePage() {
 
       {/* ── Center Board ── */}
       <main className={styles.center}>
-        {!isIdle && (
-          <div className={styles.gameTopBar}>
-            <div className={styles.statsGroup}>
-              <div className={styles.statItem}>⏱ {format(seconds)}</div>
-              <div className={styles.statItem}>❌ {errorCount}</div>
-              <div className={styles.statItem}>⭐ {liveScore}</div>
-            </div>
-            <button onClick={handleQuit} className={styles.quitBtn}>Quit Game</button>
-          </div>
-        )}
-
         <div className={styles.boardArea}>
+          {!isIdle && (
+            <div className={styles.gameTopBar}>
+              <div className={styles.statsGroup}>
+                <div className={styles.statItem}>⏱ {format(seconds)}</div>
+                <div className={styles.statItem}>❌ {errorCount}</div>
+                <div className={styles.statItem}>⭐ {liveScore}</div>
+              </div>
+              <button onClick={handleQuit} className={styles.quitBtn}>Quit</button>
+            </div>
+          )}
+
           {isIdle ? (
             /* Idle: animated 2×4 card-back placeholder */
             <>

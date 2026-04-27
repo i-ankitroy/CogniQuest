@@ -30,52 +30,54 @@ export default function LeftSidebar({
 
       <div className={styles.divider} />
 
-      <div>
-        <div className={styles.sectionLabel}>Images</div>
-        <button
-          className={styles.uploadBtn}
-          onClick={() => fileInputRef.current.click()}
-        >
-          ⊕ &nbsp;{uploadLabel}
-        </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          multiple
-          accept="image/*"
-          style={{ display: 'none' }}
-          onChange={e => onUpload(e.target.files)}
-        />
-      </div>
-
-      <div>
-        <div className={styles.sectionLabel}>Grid Size</div>
-        <div className={styles.btnGroup}>
-          {GRID_OPTIONS.map(o => (
-            <button
-              key={o.val}
-              className={`${styles.optBtn} ${numCards === o.val ? styles.active : ''}`}
-              onClick={() => onNumCardsChange(o.val)}
-            >
-              {o.label}
-              <span className={styles.badge}>{o.badge}</span>
-            </button>
-          ))}
+      <div className={styles.middleSection}>
+        <div>
+          <div className={styles.sectionLabel}>Images</div>
+          <button
+            className={styles.uploadBtn}
+            onClick={() => fileInputRef.current.click()}
+          >
+            ⊕ &nbsp;{uploadLabel}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={e => onUpload(e.target.files)}
+          />
         </div>
-      </div>
 
-      <div>
-        <div className={styles.sectionLabel}>Preview Time</div>
-        <div className={styles.btnGroup}>
-          {TIME_OPTIONS.map(o => (
-            <button
-              key={o.val}
-              className={`${styles.optBtn} ${revealTime === o.val ? styles.active : ''}`}
-              onClick={() => onRevealTimeChange(o.val)}
-            >
-              {o.label}
-            </button>
-          ))}
+        <div>
+          <div className={styles.sectionLabel}>Grid Size</div>
+          <div className={styles.btnGroup}>
+            {GRID_OPTIONS.map(o => (
+              <button
+                key={o.val}
+                className={`${styles.optBtn} ${numCards === o.val ? styles.active : ''}`}
+                onClick={() => onNumCardsChange(o.val)}
+              >
+                {o.label}
+                <span className={styles.badge}>{o.badge}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.sectionLabel}>Preview Time</div>
+          <div className={styles.btnGroup}>
+            {TIME_OPTIONS.map(o => (
+              <button
+                key={o.val}
+                className={`${styles.optBtn} ${revealTime === o.val ? styles.active : ''}`}
+                onClick={() => onRevealTimeChange(o.val)}
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
