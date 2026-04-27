@@ -12,8 +12,8 @@ export default function Card({ card, onClick, numCards }) {
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={`${styles.wrap} ${numCards === 12 ? styles.sm : ''}`}>
-      <div className={cls} onClick={() => !isMatched && onClick(card.id)}>
+    <div className={`${styles.wrap} ${numCards === 12 ? styles.sm : ''} ${isMatched ? styles.matched : ''}`}>
+      <div className={cls} data-card-id={card.id} onClick={() => !isMatched && onClick(card.id)}>
         <div className={`${styles.face} ${styles.back}`}>
           <div className={styles.backPattern}></div>
           <div className={styles.backIcon}>CQ</div>

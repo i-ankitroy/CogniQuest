@@ -40,14 +40,11 @@
 }
 .card.wrong { animation: shake 0.45s ease forwards; }
 
-@keyframes matchPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
-  60%  { box-shadow: 0 0 0 12px rgba(74,222,128,0); }
-  100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
-}
 .card.matched {
-  animation: matchPulse 0.6s ease forwards;
+  opacity: 0;
+  transition: opacity 0.06s ease 0.57s; /* fade AFTER flip animation (0.55s) */
   cursor: default;
+  pointer-events: none;
 }
 
 .face {
@@ -105,8 +102,9 @@
   object-fit: cover;
 }
 
-.card.matched .front {
-  background: linear-gradient(145deg, #1a2e1a, #152515);
-  border-color: rgba(74,222,128,0.4);
-  box-shadow: 0 0 20px rgba(74,222,128,0.15);
+/* Empty slot shimmer when card has fallen */
+.wrap.matched {
+  background: rgba(59,130,246,0.04);
+  border-radius: 20px;
+  border: 1px dashed rgba(59,130,246,0.15);
 }

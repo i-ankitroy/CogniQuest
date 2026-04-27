@@ -34,7 +34,7 @@ function buildDeck(images, numCards) {
   }));
 }
 
-export function useGameLogic({ onWin, playSound, revealTime }) {
+export function useGameLogic({ onWin, onMatch, playSound, revealTime }) {
   const [cards, setCards]           = useState([]);
   const [matchCount, setMatchCount] = useState(0);
   const [errorCount, setErrorCount] = useState(0);
@@ -133,6 +133,9 @@ export function useGameLogic({ onWin, playSound, revealTime }) {
       const newMatch = matchCountRef.current + 1;
       matchCountRef.current = newMatch;
       setMatchCount(newMatch);
+
+      // Fire onMatch so the UI can trigger the fall animation
+      if (onMatch) onMatch([first.id, id], first.image);
 
       if (newMatch === totalPairsRef.current) {
         setTimeout(() => onWin(), 800);

@@ -4,6 +4,7 @@ import RightSidebar   from '../components/RightSidebar';
 import Board          from '../components/Board';
 import IdleBoard      from '../components/IdleBoard';
 import ConfettiCanvas from '../components/ConfettiCanvas';
+import ShatterCanvas  from '../components/ShatterCanvas';
 import { useGameLogic } from '../hooks/useGameLogic';
 import { useTimer }     from '../hooks/useTimer';
 import { useAudio }     from '../hooks/useAudio';
@@ -21,6 +22,9 @@ export default function GamePage() {
   const [winData,   setWinData]   = useState(null);
   const [confetti,  setConfetti]  = useState(false);
 
+  // Ref for the physics shatter overlay
+  const shatterRef = useRef(null);
+
   const { isMuted, isMusicPlaying, toggleMute, toggleMusic, playSound } = useAudio();
   const { seconds, start: startTimer, stop: stopTimer, reset: resetTimer, format } = useTimer();
   const secondsRef = useRef(0);
@@ -33,10 +37,29 @@ export default function GamePage() {
     playSound('win-sound');
   }, [stopTimer, playSound]);
 
+  // Find matched card DOM elements and trigger the fall physics animation
+  const handleMatch = useCallback((ids, imageSrc) => {
+    if (!shatterRef.current) return;
+    setTimeout(() => {
+      ids.forEach(id => {
+        const el = document.querySelector(`[data-card-id="${id}"]`);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        shatterRef.current.triggerFall(
+          rect.left + rect.width  / 2,
+          rect.top  + rect.height / 2,
+          rect.width,
+          rect.height,
+          imageSrc,
+        );
+      });
+    }, 640);
+  }, []);
+
   const {
     cards, matchCount, errorCount, totalPairs, gameStarted,
     startGame, flipCard, handleUpload, calcScore,
-  } = useGameLogic({ onWin: handleWin, playSound, revealTime });
+  } = useGameLogic({ onWin: handleWin, onMatch: handleMatch, playSound, revealTime });
 
   const startGameRef = useRef(startGame);
   startGameRef.current = startGame;
@@ -62,6 +85,7 @@ export default function GamePage() {
 
   const handleQuit = useCallback(() => {
     stopTimer();
+    shatterRef.current?.clearAll();
     setGamePhase('idle');
     setWinData(null);
     setConfetti(false);
@@ -78,6 +102,7 @@ export default function GamePage() {
 
   /** Restart with whatever settings are currently active */
   const handleRestart = useCallback(() => {
+    shatterRef.current?.clearAll();
     setWinData(null);
     setConfetti(false);
     resetTimer();
@@ -109,7 +134,7 @@ export default function GamePage() {
   return (
     <div className={`${styles.app} ${!isIdle ? styles.gameMode : ''}`}>
       <DynamicBackground />
-
+      <ShatterCanvas ref={shatterRef} />
       <ConfettiCanvas active={confetti} />
 
       <div className={`${styles.sidebarWrapper} ${styles.left} ${!isIdle ? styles.slideOutLeft : ''}`}>
